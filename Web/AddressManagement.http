@@ -1,0 +1,89 @@
+@AddressManagement_HostAddress = http://localhost:5174
+
+### GET All Addresses
+GET {{AddressManagement_HostAddress}}/api/v1/Address
+Accept: application/json
+
+###
+
+### GET Address by ID
+GET {{AddressManagement_HostAddress}}/api/v1/Address/1
+Accept: application/json
+
+###
+
+### POST Address
+POST {{AddressManagement_HostAddress}}/api/v1/Address
+Content-Type: application/json
+
+{
+  "addressLine": "Example",
+  "country": "Example",
+  "state": "Example",
+  "zipCode": "00000",
+  "customerId": 0
+}
+
+###
+
+### PUT Address
+PUT {{AddressManagement_HostAddress}}/api/v1/Address
+Content-Type: application/json
+
+{
+  "id": 1,
+  "addressLine": "Test",
+  "country": "Test",
+  "state": "Test",
+  "zipCode": "00000",
+  "customerId": 0
+}
+
+###
+
+### DELETE Address
+DELETE {{AddressManagement_HostAddress}}/api/v1/Address/1
+
+###
+
+### GET All Customers
+GET {{AddressManagement_HostAddress}}/api/v1/Customer
+Accept: application/json
+
+###
+
+### GET Customer by ID
+GET {{AddressManagement_HostAddress}}/api/v1/Customer/1
+Accept: application/json
+
+###
+
+### POST Customer
+POST {{AddressManagement_HostAddress}}/api/v1/Customer
+Content-Type: application/json
+
+{
+  "Name": "Example",
+  "Birthday": "16/09/2002",
+  "PhoneNumber": "8090000000",
+  "Email": "Example@gmail.com"
+}
+
+###
+
+### PUT Customer
+PUT {{AddressManagement_HostAddress}}/api/v1/Customer
+Content-Type: application/json
+
+{
+  "Id": 0,
+  "Name": "Example",
+  "Birthday": "16/09/2002",
+  "PhoneNumber": "8090000000",
+  "Email": "Example@gmail.com"
+}
+
+###
+
+### DELETE Customer
+DELETE {{AddressManagement_HostAddress}}/api/v1/Customer/1
