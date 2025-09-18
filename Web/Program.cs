@@ -20,6 +20,9 @@ builder.Services.AddContext(builder.Configuration);
 
 //Add Repository
 builder.Services.AddRepositories();
+
+//Add UnitOfWork
+builder.Services.AddUnitOfWork();
   
 //Add Mappers
 builder.Services.AddMappers();

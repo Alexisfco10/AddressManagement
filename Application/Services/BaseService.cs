@@ -7,10 +7,10 @@ using Domain.Models;
 
 namespace Application.Services;
 
-public abstract class BaseService<TModel, TDto, TInsert, TUpdate>(IRepository<TModel> repository, 
-    IMapper<TModel, TDto, TInsert, TUpdate> mapper)
-    : IService<TModel, TDto, TInsert, TUpdate>
-    where TModel : BaseModel
+public abstract class BaseService<TEntity, TDto, TInsert, TUpdate>(IRepository<TEntity> repository, 
+    IMapper<TEntity, TDto, TInsert, TUpdate> mapper)
+    : IService<TEntity, TDto, TInsert, TUpdate>
+    where TEntity : BaseModel
     where TDto : class, IBaseDto
     where TUpdate : UpdateDto
 {
@@ -28,7 +28,7 @@ public abstract class BaseService<TModel, TDto, TInsert, TUpdate>(IRepository<TM
         return result.Select(mapper.ToDto);
     }
 
-    public virtual async Task<IEnumerable<TDto>> Get(Expression<Func<TModel, bool>> predicate)
+    public virtual async Task<IEnumerable<TDto>> Get(Expression<Func<TEntity, bool>> predicate)
     {
         var result = await repository.Search(predicate);
 
@@ -46,7 +46,7 @@ public abstract class BaseService<TModel, TDto, TInsert, TUpdate>(IRepository<TM
 
     public virtual async Task<TDto?> Update(TUpdate updateRequest)
     {
-        var model = repository.Get(updateRequest.Id).Result;
+        var model = await repository.Get(updateRequest.Id);
         if (model == null)
             return null;
         
@@ -60,7 +60,7 @@ public abstract class BaseService<TModel, TDto, TInsert, TUpdate>(IRepository<TM
     {
         try
         {
-            var modelToDelete = repository.Get(id).Result;
+            var modelToDelete = await repository.Get(id);
             if (modelToDelete == null) 
                 return false;
             

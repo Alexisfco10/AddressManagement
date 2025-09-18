@@ -6,52 +6,52 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructure.Repository;
 
-public abstract class Repository<TModel>(AddressManagementDbContext dbContext)
-    : IRepository<TModel>
-    where TModel : BaseModel
+public abstract class Repository<TEntity>(AddressManagementDbContext dbContext)
+    : IRepository<TEntity>
+    where TEntity : BaseModel
 {
     
-    protected readonly DbSet<TModel> DbSet = dbContext.Set<TModel>();
+    protected readonly DbSet<TEntity> DbSet = dbContext.Set<TEntity>();
 
-    public virtual async Task Add(TModel model)
+    public virtual async Task Add(TEntity model)
     {
         await DbSet.AddAsync(model);
     }
 
-    public virtual async Task<IEnumerable<TModel>> GetAll(Func<IQueryable<TModel>, IQueryable<TModel>>? include = null)
+    public virtual async Task<IEnumerable<TEntity>> GetAll(Func<IQueryable<TEntity>, IQueryable<TEntity>>? include = null)
     {
-        IQueryable<TModel> query = DbSet;
+        IQueryable<TEntity> query = DbSet;
         if (include is not null)
             query = include(query);
 
         return await query.ToListAsync();
     }
 
-    public virtual async Task<TModel?> Get(long id, Func<IQueryable<TModel>, IQueryable<TModel>>? include = null)
+    public virtual async Task<TEntity?> Get(long id, Func<IQueryable<TEntity>, IQueryable<TEntity>>? include = null)
     {
-        IQueryable<TModel> query = DbSet;
+        IQueryable<TEntity> query = DbSet;
         if (include is not null)
             query = include(query);
 
         return await query.FirstOrDefaultAsync(model => model.Id == id);
     }
 
-    public virtual void Update(TModel model)
+    public virtual void Update(TEntity model)
     {
         DbSet.Attach(model);
         DbSet.Entry(model).State = EntityState.Modified;
     }
 
-    public void Delete(TModel model)
+    public void Delete(TEntity model)
     {
         DbSet.Remove(model);
     }
 
-    public virtual async Task<IEnumerable<TModel>> Search(
-            Expression<Func<TModel, bool>> predicate,
-            Func<IQueryable<TModel>, IQueryable<TModel>>? include = null)
+    public virtual async Task<IEnumerable<TEntity>> Search(
+            Expression<Func<TEntity, bool>> predicate,
+            Func<IQueryable<TEntity>, IQueryable<TEntity>>? include = null)
     {
-        IQueryable<TModel> query = DbSet;
+        IQueryable<TEntity> query = DbSet;
         
         if (include is not null)
             query = include(query);

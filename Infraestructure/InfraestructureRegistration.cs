@@ -1,6 +1,8 @@
 using Application.Repository;
+using Application.UnitOfWork;
 using Infraestructure.Context;
 using Infraestructure.Repository;
+using Infraestructure.UOW;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,5 +21,10 @@ public static class ServiceRegistration
     {
         svc.AddScoped<IAddressRepository, AddressRepository>();
         svc.AddScoped<ICustomerRepository, CustomerRepository>();
+    }
+
+    public static void AddUnitOfWork(this IServiceCollection svc)
+    {
+        svc.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 }

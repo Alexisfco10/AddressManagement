@@ -3,13 +3,13 @@ using Domain.Models;
 
 namespace Application.Repository;
 
-public interface IRepository<TModel> where TModel : BaseModel
+public interface IRepository<TEntity> where TEntity : BaseModel
 {
-     Task Add(TModel model);
-     Task<IEnumerable<TModel>> GetAll(Func<IQueryable<TModel>, IQueryable<TModel>>? include = null);
-     Task<TModel?> Get(long id, Func<IQueryable<TModel>, IQueryable<TModel>>? include = null);
-     void Update(TModel model);
-     void Delete(TModel model);
-     Task<IEnumerable<TModel>> Search(Expression<Func<TModel, bool>> predicate, Func<IQueryable<TModel>, IQueryable<TModel>>? include = null);
+     Task Add(TEntity model);
+     Task<IEnumerable<TEntity>> GetAll(Func<IQueryable<TEntity>, IQueryable<TEntity>>? include = null);
+     Task<TEntity?> Get(long id, Func<IQueryable<TEntity>, IQueryable<TEntity>>? include = null);
+     void Update(TEntity model);
+     void Delete(TEntity model);
+     Task<IEnumerable<TEntity>> Search(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IQueryable<TEntity>>? include = null);
      Task Save();
 }
