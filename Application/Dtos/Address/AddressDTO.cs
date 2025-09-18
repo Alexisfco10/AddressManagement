@@ -1,3 +1,5 @@
+using Application.Dtos.Core;
+
 namespace Application.Dtos.Address;
 
 public class AddressDto: IBaseDto

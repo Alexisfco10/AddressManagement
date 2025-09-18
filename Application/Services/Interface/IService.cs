@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Application.Dtos;
+using Application.Dtos.Core;
 using Domain.Models;
 
 namespace Application.Services.Interface;
@@ -7,6 +8,8 @@ namespace Application.Services.Interface;
 public interface IService<TEntity, TDto, in TInsert, in TUpdate> 
     where TEntity: BaseModel
     where TDto: class, IBaseDto
+    where TInsert: class, IAddDto
+    where TUpdate: class, IUpdateDto
 {
     Task<TDto?> Get(long id);
     Task<IEnumerable<TDto>> Get();

@@ -1,6 +1,8 @@
+using Application.Dtos.Core;
+
 namespace Application.Dtos.Customer;
 
-public class CustomerInsert
+public class CustomerInsert : IAddDto
 {
     public required string Name { get; set; }
     public required string Birthday { get; set; }

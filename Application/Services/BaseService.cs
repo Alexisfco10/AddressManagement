@@ -1,7 +1,10 @@
 using System.Linq.Expressions;
 using Application.Dtos;
+using Application.Dtos.Core;
 using Application.Repository;
 using Application.Services.Interface;
+using Application.Shared.Dtos;
+using Application.Shared.Dtos.Interface;
 using Application.Shared.Mappers.Interface;
 using Domain.Models;
 
@@ -12,7 +15,8 @@ public abstract class BaseService<TEntity, TDto, TInsert, TUpdate>(IRepository<T
     : IService<TEntity, TDto, TInsert, TUpdate>
     where TEntity : BaseModel
     where TDto : class, IBaseDto
-    where TUpdate : UpdateDto
+    where TInsert : class, IAddDto
+    where TUpdate : class, IUpdateDto
 {
 
     public virtual async Task<TDto?> Get(long id)

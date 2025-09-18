@@ -9,11 +9,13 @@ namespace Infraestructure.Migrations
     /// <inheritdoc />
     public partial class Initial : Migration
     {
+        const string CUSTOMER = "Customer";
+        const string ADDRESS = "Address";
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Customer",
+                name: CUSTOMER,
                 columns: table => new
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
@@ -29,7 +31,7 @@ namespace Infraestructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: ADDRESS,
                 columns: table => new
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
@@ -46,13 +48,13 @@ namespace Infraestructure.Migrations
                     table.ForeignKey(
                         name: "FK_Address_Customer_customerId",
                         column: x => x.customerId,
-                        principalTable: "Customer",
+                        principalTable: CUSTOMER,
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Customer",
+                table: CUSTOMER,
                 columns: new[] { "id", "birthday", "email", "name", "phoneNumber" },
                 values: new object[,]
                 {
@@ -62,7 +64,7 @@ namespace Infraestructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Address",
+                table: ADDRESS,
                 columns: new[] { "id", "addressLine", "country", "customerId", "state", "zipCode" },
                 values: new object[,]
                 {
@@ -73,7 +75,7 @@ namespace Infraestructure.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Address_customerId",
-                table: "Address",
+                table: ADDRESS,
                 column: "customerId");
         }
 
@@ -81,10 +83,10 @@ namespace Infraestructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Address");
+                name: ADDRESS);
 
             migrationBuilder.DropTable(
-                name: "Customer");
+                name: CUSTOMER);
         }
     }
 }

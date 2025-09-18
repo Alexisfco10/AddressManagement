@@ -17,7 +17,7 @@ public class AddressManagementDbContext(DbContextOptions<AddressManagementDbCont
             {
                 Id = 1,
                 Name = "Alex Figueroa",
-                Birthday = new DateTime(2002, 9, 16),
+                Birthday = new DateTime(2002, 9, 16, 18, 50, 39, DateTimeKind.Utc),
                 PhoneNumber = "8090000000",
                 Email = "Alexfi2@gmail.com"
             },
@@ -25,7 +25,7 @@ public class AddressManagementDbContext(DbContextOptions<AddressManagementDbCont
             {
                 Id = 2,
                 Name = "Carla Gomez",
-                Birthday = new DateTime(1995, 8, 19),
+                Birthday = new DateTime(1995, 8, 19, 16, 7,8, DateTimeKind.Local),
                 PhoneNumber = "8091111111",
                 Email = "gomcarla8@gmail.com"
             },
@@ -33,7 +33,7 @@ public class AddressManagementDbContext(DbContextOptions<AddressManagementDbCont
             {
                 Id = 3,
                 Name = "Luis Perez",
-                Birthday = new DateTime(1999, 2, 4),
+                Birthday = new DateTime(1999, 2, 4, 11, 30, 14, DateTimeKind.Local),
                 PhoneNumber = "8092222222",
                 Email = "lperez1999@gmail.com"
             }

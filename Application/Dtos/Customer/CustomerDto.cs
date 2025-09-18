@@ -1,4 +1,5 @@
 using Application.Dtos.Address;
+using Application.Dtos.Core;
 
 namespace Application.Dtos.Customer;
 

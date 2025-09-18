@@ -1,10 +1,11 @@
+using System.Globalization;
 using Application.Dtos.Customer;
 using Application.Shared.RegexPatterns;
 using FluentValidation;
 
 namespace Application.Validators.Customer;
 
-public partial class UpdateCustomerValidator : AbstractValidator<CustomerUpdate>
+public class UpdateCustomerValidator : AbstractValidator<CustomerUpdate>
 {
     public UpdateCustomerValidator()
     {
@@ -19,7 +20,7 @@ public partial class UpdateCustomerValidator : AbstractValidator<CustomerUpdate>
             .NotEmpty().WithMessage("Birthday is required.")
             .Must(birthday =>
             {
-                if (DateTime.TryParse((string?)birthday, out var parsedDate))
+                if (DateTime.TryParse((string?)birthday, new CultureInfo("es-DO"), out var parsedDate))
                 {
                     return parsedDate <= DateTime.Today.AddYears(-18);
                 }
