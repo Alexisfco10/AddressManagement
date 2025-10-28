@@ -1,10 +1,7 @@
 using System.Linq.Expressions;
-using Application.Dtos;
 using Application.Dtos.Core;
 using Application.Repository;
 using Application.Services.Interface;
-using Application.Shared.Dtos;
-using Application.Shared.Dtos.Interface;
 using Application.Shared.Mappers.Interface;
 using Domain.Models;
 
